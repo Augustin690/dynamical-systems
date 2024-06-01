@@ -93,19 +93,19 @@ fig.tight_layout()
 plt.show()
 
 #---------------task5.7-----------------------
-# 改变参数 beta 和 nu
+# Change the parameters beta and nu
 beta_new = 15
 nu_new = 0.5
 
-# 数值积分 (新参数)
+# Numerical integration (new parameters)
 sol_new = solve_ivp(model, t_span=[time[0],time[-1]], y0=SIM0, t_eval=time,args=(mu0, mu1, beta_new, A, d, nu_new, b), method='LSODA', rtol=rtol, atol=atol)
 
-# 提取结果
+# Extract results
 S_new = sol_new.y[0]
 I_new = sol_new.y[1]
 R_new = sol_new.y[2]
 
-# 绘制新参数结果
+# Plot the new parameter results
 plt.figure(figsize=(12, 6))
 plt.plot(sol.t, S_new, label='Susceptible (New Parameters)')
 plt.plot(sol.t, I_new, label='Infective (New Parameters)')
@@ -117,7 +117,7 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# 比较新旧参数下的Infective变化
+# Compare the Infective changes under new and old parameters
 plt.figure(figsize=(12, 6))
 plt.plot(sol.t, sol.y[1], label='Infective (Original)')
 plt.plot(sol.t, I_new, label='Infective (New Parameters)', linestyle='dashed')

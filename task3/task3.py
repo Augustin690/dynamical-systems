@@ -1,14 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-#----------------任务1：不同 α 值下的相位图--------------------
+#----------------Task 1: Phase diagram under different α values--------------------
 def vector_field(x, y, alpha):
     dx = alpha * x - y - x * (x ** 2 + y ** 2)
     dy = x + alpha * y - y * (x ** 2 + y ** 2)
     return dx, dy
 
 
-# 绘制相图
+# Draw phase diagram
 def plot_phase_diagram(alpha,ax):
     x = np.linspace(-3, 3, 400)
     y = np.linspace(-3, 3, 400)
@@ -22,7 +22,7 @@ def plot_phase_diagram(alpha,ax):
 
 
 
-# 绘制不同 α 值的相图
+# Draw a phase diagram for different α values
 alphas = [-0.5, 0, 0.5]
 fig, axs = plt.subplots(1, 3, figsize=(15, 5))
 for i,alpha in enumerate(alphas):
@@ -30,7 +30,7 @@ for i,alpha in enumerate(alphas):
 
 plt.show()
 
-#--------------任务2：对于α=1,使用Euler方法来数值计算并可视化两个轨道-----------
+#--------------Task 2: For α=1, use Euler's method to numerically compute and visualize two orbitals-----------
 def euler_method(x0, y0, alpha, dt, steps):
     x = np.zeros(steps)
     y = np.zeros(steps)
@@ -44,12 +44,12 @@ def euler_method(x0, y0, alpha, dt, steps):
     return x, y
 
 
-# 参数设置
+# parameter settings
 alpha = 1
 dt = 0.01
 steps = 5000
 
-# 初始条件
+# Initial conditions
 initial_conditions = [(2, 0), (0.5, 0)]
 
 plt.figure(figsize=(10, 8))
@@ -66,28 +66,28 @@ plt.show()
 
 
 
-#-------------------任务3：可视化尖点分岔的分岔面---------------------
+#-------------------Task 3: Visualize the bifurcation surface of the cusp bifurcation---------------------
 
-# 定义参数范围
+# Define parameter range
 alpha1_values = np.linspace(-1, 1, 50)
 alpha2_values = np.linspace(-1, 1, 50)
 X = np.linspace(-2, 2, 200)
 
-# 创建网格
+# Create the grid
 alpha1, alpha2, x = np.meshgrid(alpha1_values, alpha2_values, X)
 
-# 计算方程
+# Calculate the equation
 F = alpha1 + alpha2 * x - x**3
 
-# 仅保留满足方程F=0的点
+# Only keep points that satisfy the equation F=0
 indices = np.abs(F) < 0.05  # 允许小的误差
 
-# 提取对应的alpha1, alpha2和x
+# Extract the corresponding alpha1, alpha2 and x
 alpha1_surface = alpha1[indices]
 alpha2_surface = alpha2[indices]
 x_surface = x[indices]
 
-# 绘制3D图
+# Draw a 3D graph
 fig = plt.figure(figsize=(12, 8))
 ax = fig.add_subplot(111, projection='3d')
 ax.scatter(alpha1_surface, alpha2_surface, x_surface, c='r', marker='o')

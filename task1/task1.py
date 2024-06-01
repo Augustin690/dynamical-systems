@@ -1,14 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 定义矩阵 Aα_1和Aα_2
+# Define matrices Aα_1 and Aα_2
 def matrix_A(alpha,r):
     A=np.array([[alpha, alpha], [r, 0]])
     A_str = "\n".join(["[" + " ".join(map(str, row)) + "]" for row in A])
     return A,A_str
 
 
-# 绘制相图
+# Draw phase diagram
 def plot_phase_portrait(alpha, ax,r):
     A,A_str = matrix_A(alpha,r)
     x_vals = np.linspace(-10, 10, 400)
@@ -21,7 +21,7 @@ def plot_phase_portrait(alpha, ax,r):
     ax.set_title(f'A$\\alpha$=\n {A_str}',fontsize=9)
 
 
-# 设置不同的 alpha 值
+# Setting different alpha values
 alphas1 = [-1, 1]
 alphas2 = -1
 
